@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .goog-te-banner-frame{
+            display:none;
+        }
+        body{
+            top:0px!important; 
+            min-height: 0px!important;
+        }
+        .shortselect{  
+            background:#fafdfe;  
+            height:28px;  
+            width:80px;  
+            line-height:28px;  
+            border:1px solid #9bc0dd;  
+            -moz-border-radius:2px;  
+            -webkit-border-radius:2px;  
+            border-radius:2px;
+        }  
+    </style>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+</head>
+<body>
+    <div>
+        <select title="lang" id="select_lang" class="shortselect">  
+            <option value="/auto/en">英语</option>  
+            <option value="/auto/zh-CN" selected="selected">中文</option>  
+            <option value="/auto/ja">日语</option>  
+            <option value="/auto/th">泰语</option>  
+        </select> 
+    </div>
+   
+    你好，世界
+    <script src="./google/init.js"></script>
+    <script>
+        // 获取默认语言
+        $.cookie.raw = true;
+        let lang = $.cookie('googtrans');;
+        if(lang){
+            $("#select_lang").val(lang);
+        }
+        // 切换语言
+        $("#select_lang").change(function(e){
+            let lang = $("#select_lang").val();
+            $.cookie('googtrans', lang);
+            window.location.reload();
+        })
+    </script>
+</body>
+</html>
